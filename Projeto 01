@@ -1,0 +1,40 @@
+// leds
+int led1 = 12;
+int led2 = 13;
+
+// botoes
+int button1 = 2;
+
+// Estado dos botões
+int stateButton1 = 0;
+
+void setup() {
+  // leds como saida
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  
+  // botao como entrada
+  pinMode(button1, INPUT);
+}
+
+void loop() {
+  // lê botão
+  stateButton1 = digitalRead(button1);
+
+  // alterna leds
+  if (stateButton1 == HIGH) {
+    // liga o led1 e desliga o led2
+    digitalWrite(led1, HIGH);
+    digitalWrite(led2, LOW);
+    delay(2000); 
+
+    // desliga o led1 e liga o led2
+    digitalWrite(led1, LOW);
+    digitalWrite(led2, HIGH);
+    delay(1000); // Aguarda 1 segundo
+  } else {
+    // desliga ambos quando o botão não estiver pressionado
+    digitalWrite(led1, LOW);
+    digitalWrite(led2, LOW);
+  }
+}
