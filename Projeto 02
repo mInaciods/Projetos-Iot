@@ -1,0 +1,40 @@
+int distancia = 0;
+
+// Função para medir a distância usando o sensor ultrassônico
+long sensor(int acionador, int echo) {
+
+  pinMode(acionador, OUTPUT);
+  digitalWrite(acionador, LOW);
+  delayMicroseconds(2);
+  digitalWrite(acionador, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(acionador, LOW);
+  pinMode(echo, INPUT);
+  return pulseIn(echo, HIGH);
+}
+
+void setup() {
+  pinMode(9, OUTPUT);
+  pinMode(4, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Calcula a distância em centímetros
+  distancia = sensor(7, 6) / 58;
+  Serial.print("Distancia: ");
+  Serial.println(distancia);
+
+  if (distancia < 60) {
+    digitalWrite(9, HIGH);  
+  } else {
+    digitalWrite(9, LOW);   
+  }
+    if (distancia < 120) {
+    digitalWrite(4, HIGH);  
+  } else {
+    digitalWrite(4, LOW);   
+  }
+
+  delay(100);
+}
