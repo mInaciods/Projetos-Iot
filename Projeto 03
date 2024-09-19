@@ -1,0 +1,22 @@
+void setup()
+{
+  pinMode(12, OUTPUT);
+  pinMode(6, INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int buzzer = 9;
+  int movimento = digitalRead(6);
+  Serial.println(movimento);
+  if (movimento) {
+    digitalWrite(13, HIGH);
+    tone(buzzer, 100);
+  }
+  else{
+    digitalWrite(13, LOW);
+     noTone(buzzer);;
+  }
+  delay(100);
+}
